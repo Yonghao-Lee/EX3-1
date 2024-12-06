@@ -1,0 +1,13 @@
+# ninja log v6
+1	87	1733500686568202142	CMakeFiles/MarkovChainTweetGenerator.dir/linked_list.c.o	9e0c445fb9b5939f
+6	159	1733500895874184742	CMakeFiles/MarkovChainTweetGenerator.dir/tweets_generator.c.o	d70c84b0b4054981
+3	159	1733501330570462639	CMakeFiles/MarkovChainTweetGenerator.dir/markov_chain.c.o	ba53b1f7f1755d38
+160	275	1733501330727520796	MarkovChainTweetGenerator	7292e545d42ca2ea
+2	208	1733501705024312479	CMakeFiles/MarkovChainTweetGenerator.dir/markov_chain.c.o	ba53b1f7f1755d38
+208	323	1733501705230662246	MarkovChainTweetGenerator	7292e545d42ca2ea
+2	204	1733501876656155307	CMakeFiles/MarkovChainTweetGenerator.dir/markov_chain.c.o	ba53b1f7f1755d38
+204	317	1733501876858528543	MarkovChainTweetGenerator	7292e545d42ca2ea
+7	175	1733502012454691138	CMakeFiles/MarkovChainTweetGenerator.dir/tweets_generator.c.o	d70c84b0b4054981
+175	273	1733502012621987256	MarkovChainTweetGenerator	7292e545d42ca2ea
+3	230	1733502232995559455	CMakeFiles/MarkovChainTweetGenerator.dir/tweets_generator.c.o	d70c84b0b4054981
+230	352	1733502233222593279	MarkovChainTweetGenerator	7292e545d42ca2ea

@@ -1,0 +1,4 @@
+/Users/yonghaolee/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Users/yonghaolee/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S "/Users/yonghaolee/Documents/C:CPP_winter_2024/Ex_3/Ex3 Part A files-20241205" -B "/Users/yonghaolee/Documents/C:CPP_winter_2024/Ex_3/Ex3 Part A files-20241205/cmake-build-debug"
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/yonghaolee/Documents/C:CPP_winter_2024/Ex_3/Ex3 Part A files-20241205/cmake-build-debug
