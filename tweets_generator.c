@@ -4,7 +4,7 @@
 
 #define DELIMITERS " \n\t\r"
 #define BASE_10 10
-#define READ_ALL (-1)
+#define READ_ALL 42
 #define LINE_MAX 1001
 
 #include <stdio.h>
@@ -23,7 +23,7 @@ int main(int argc, char** argv)
   if (argc < 4 || argc > 5)
   {
     printf("%s\n", NUM_ARGS_ERROR);
-    exit(EXIT_FAILURE);
+    return EXIT_FAILURE;
   }
   char* endptr;
   errno = 0;
@@ -57,18 +57,9 @@ int main(int argc, char** argv)
     if (max_words_to_read > total_words_in_file){
       max_words_to_read = total_words_in_file;
     }
-
   }
   // printf("the seed in decimal form :%d\n", seed);
-  // printf("Number of tweets to generate:%d\n ", num_tweets);
-  if (max_words_to_read != READ_ALL)
-  {
-    printf("Max words to read:%d\n", max_words_to_read);
-  }
-  else
-  {
-    printf("Reading full corpus.\n");
-  }
+  // printf("Number of tweets to generate:%d\n ", num_tweets
 
   // Initialize the markov chain
     MarkovChain *markov_chain = initialize_markov_chain();  if (!markov_chain){
@@ -78,7 +69,6 @@ int main(int argc, char** argv)
   if (!file){
     printf("Unable to open file.\n");
     free_database(&markov_chain);
-    fclose(file);
     return EXIT_FAILURE;
   }
 
@@ -90,15 +80,21 @@ int main(int argc, char** argv)
   }
 
 
-  for(int i = 0; i < num_tweets; i++){
+  int tweets_generated = 0; // Track successfully generated tweets
+
+  while (tweets_generated < num_tweets) {
     MarkovNode* first_node = get_first_random_node(markov_chain);
-    if (!first_node){
-      printf("Unable to get first node.\n");
-      continue;
+    if (!first_node) {
+      printf("Unable to get first node. Retrying...\n");
+      continue; // Retry this iteration
     }
-    printf("Tweet %d: ", i);
+
+    printf("Tweet %d: ", tweets_generated + 1);
     generate_tweet(first_node, 20);
+    tweets_generated++; // Increment only on successful generation
   }
+
+  fclose(file);
   free_database(&markov_chain);
   return EXIT_SUCCESS;
 }
@@ -122,7 +118,7 @@ int count_words_in_file(const char *file_path){
   FILE *file = fopen(file_path, "r");
   if (!file){
     printf("%s\n", FILE_PATH_ERROR);
-    exit(EXIT_FAILURE);
+    return EXIT_FAILURE;
   }
   int word_count = 0;
   char line[LINE_MAX];
@@ -151,15 +147,16 @@ int fill_database(FILE *fp, int words_to_read, MarkovChain *markov_chain) {
   while (fgets(line, LINE_MAX, fp)) {
     // Tokenize the line into words
     char *token = strtok(line, DELIMITERS);
-    while (token && (words_to_read == READ_ALL || words_processed < words_to_read)) {
-      // Add the word to the database
+    while (token != NULL && (words_to_read == READ_ALL ||
+      words_processed < words_to_read)) {
       Node *current_node = add_to_database(markov_chain, token);
       if (current_node == NULL) {
         return EXIT_FAILURE; // Handle memory allocation failure
       }
 
       if (prev != NULL) {
-        if (add_node_to_frequency_list(prev->data, current_node->data) != EXIT_SUCCESS) {
+        if (add_node_to_frequency_list(prev->data,
+          current_node->data) != EXIT_SUCCESS) {
           return EXIT_FAILURE; // Handle failure to link nodes
         }
       }

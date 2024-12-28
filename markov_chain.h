@@ -70,7 +70,8 @@ Node* add_to_database(MarkovChain *markov_chain, char *data_ptr);
  * @return success/failure: 0 if the process was successful, 1 if in
  * case of allocation error.
  */
-int add_node_to_frequency_list(MarkovNode *first_node, MarkovNode *second_node);
+int add_node_to_frequency_list(MarkovNode *first_node,
+    MarkovNode *second_node);
 
 /**
  * Free markov_chain and all of it's content from memory
